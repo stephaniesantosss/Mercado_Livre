@@ -1,16 +1,18 @@
 package br.com.mercadolivre.request;
 
 import br.com.mercadolivre.model.Usuario;
+import br.com.mercadolivre.utils.UniqueValue;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class UsuarioRequest {
 
-    @NotBlank
-    @Email
+    @Column(unique=true) @NotBlank @Email
+    @UniqueValue(domainClass = Usuario.class, fieldName = "login")
     private String login;
     @NotBlank
     @Size(min = 6)

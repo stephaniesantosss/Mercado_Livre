@@ -25,9 +25,10 @@ public class UsuarioController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping
-    public ResponseEntity salvarUsuario(@RequestBody @Valid UsuarioRequest usuarioRequest){
+    public ResponseEntity salvarUsuario(@RequestBody @Valid UsuarioRequest usuarioRequest) {
         Usuario usuario = usuarioRequest.toModel(passwordEncoder);
         usuarioRepository.save(usuario);
+
         return ResponseEntity.ok().build();
     }
 }
