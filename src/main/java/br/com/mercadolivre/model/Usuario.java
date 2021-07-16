@@ -1,9 +1,6 @@
 package br.com.mercadolivre.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -19,7 +16,7 @@ public class Usuario {
     @NotNull
     private LocalDateTime instanteCadastro;
     @NotBlank
-    @Email
+    @Email @Column(unique=true)
     private String login;
     @NotBlank
     @Size(min = 6)
