@@ -33,9 +33,9 @@ public class CategoriaRequest {
     public Categoria toModel(CategoriaRepository categoriaRepository) {
         Categoria categoria = new Categoria(nome);
         if (categoriaMae != null) {
-                Categoria categoriaMaeValida = categoriaRepository.getById(categoriaMae);
-                categoria.setCategoriaMae(categoriaMaeValida);
-                return categoria;
+            Categoria categoriaMaeRequest = categoriaRepository.getById(categoriaMae);
+            categoria.setCategoriaMae(categoriaMaeRequest);
+            return categoria;
         }
         return categoria;
     }

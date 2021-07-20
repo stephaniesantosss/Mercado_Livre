@@ -23,10 +23,12 @@ public class CategoriaController {
     @PostMapping
     public ResponseEntity salvarCategoria(@RequestBody @Valid CategoriaRequest categoriaRequest) {
         Categoria categoria = categoriaRequest.toModel(categoriaRepository);
-        boolean maeCategoria = categoriaRepository.existsById(categoriaRequest.getCategoriaMae());
-        if (maeCategoria) {
-            categoriaRepository.save(categoria);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+        if (categoria.getCategoriaMae() != null) {
+            boolean maeCategoria = categoriaRepository.existsById(categoriaRequest.getCategoriaMae());
+            if (maeCategoria) {
+                categoriaRepository.save(categoria);
+                return ResponseEntity.status(HttpStatus.CREATED).build();
+            }
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Id da Categoria mãe não existe !");
 
