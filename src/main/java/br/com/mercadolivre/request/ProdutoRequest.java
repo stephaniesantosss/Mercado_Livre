@@ -33,6 +33,29 @@ public class ProdutoRequest {
         this.categoriaId = categoriaId;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public Integer getQtde() {
+        return qtde;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Long getCategoriaId() {
+        return categoriaId;
+    }
+
+    public LocalDateTime getInstanteCadastro() {
+        return instanteCadastro;
+    }
 
     public Produto toModel(CategoriaRepository categoriaRepository) {
         Categoria categoria = categoriaRepository.getById(categoriaId);
