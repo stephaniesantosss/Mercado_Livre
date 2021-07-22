@@ -6,6 +6,8 @@ import br.com.mercadolivre.repository.CategoriaRepository;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutoRequest {
     @NotBlank
@@ -15,7 +17,8 @@ public class ProdutoRequest {
     private Double valor;
     @Min(0) @NotNull
     private Integer qtde;
-    //Caracteristica
+    @Size(min = 3)
+    private List<CaracteristicaRequest> caracteristicas = new ArrayList<>();
     @NotBlank @Size(max = 1000)
     private String descricao;
     @NotNull
@@ -25,12 +28,14 @@ public class ProdutoRequest {
     public ProdutoRequest() {
     }
 
-    public ProdutoRequest(String nome, Double valor, Integer qtde, String descricao, Long categoriaId, LocalDateTime instanteCadastro) {
+    public ProdutoRequest(String nome, Double valor, Integer qtde, List<CaracteristicaRequest> caracteristicas, String descricao, Long categoriaId, LocalDateTime instanteCadastro) {
         this.nome = nome;
         this.valor = valor;
         this.qtde = qtde;
+        this.caracteristicas.addAll(caracteristicas);
         this.descricao = descricao;
         this.categoriaId = categoriaId;
+        this.instanteCadastro = LocalDateTime.now();
     }
 
     public String getNome() {
@@ -43,6 +48,10 @@ public class ProdutoRequest {
 
     public Integer getQtde() {
         return qtde;
+    }
+
+    public List<CaracteristicaRequest> getCaracteristicas() {
+        return caracteristicas;
     }
 
     public String getDescricao() {
@@ -59,6 +68,6 @@ public class ProdutoRequest {
 
     public Produto toModel(CategoriaRepository categoriaRepository) {
         Categoria categoria = categoriaRepository.getById(categoriaId);
-        return new Produto(nome, valor, qtde, descricao, categoria, instanteCadastro);
+        return new Produto(nome, valor, qtde, caracteristicas, descricao, categoria, instanteCadastro);
     }
 }
