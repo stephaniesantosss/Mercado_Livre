@@ -22,7 +22,6 @@ public class ProdutoRequest {
     private Integer qtde;
     @Size(min = 3)
     private List<CaracteristicaRequest> caracteristicas = new ArrayList<>();
-    private List<ImagemRequest> fotos = new ArrayList<>();
     @NotBlank
     @Size(max = 1000)
     private String descricao;
@@ -36,12 +35,11 @@ public class ProdutoRequest {
     }
 
     public ProdutoRequest(String nome, Double valor, Integer qtde, List<CaracteristicaRequest> caracteristicas,
-                          List<ImagemRequest> fotos, String descricao, Long categoriaId, Long usuarioId, LocalDateTime instanteCadastro) {
+                          String descricao, Long categoriaId, Long usuarioId, LocalDateTime instanteCadastro) {
         this.nome = nome;
         this.valor = valor;
         this.qtde = qtde;
         this.caracteristicas.addAll(caracteristicas);
-        this.fotos.addAll(fotos);
         this.descricao = descricao;
         this.categoriaId = categoriaId;
         this.usuarioId = usuarioId;
@@ -62,10 +60,6 @@ public class ProdutoRequest {
 
     public List<CaracteristicaRequest> getCaracteristicas() {
         return caracteristicas;
-    }
-
-    public List<ImagemRequest> getFotos() {
-        return fotos;
     }
 
     public String getDescricao() {

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class UploaderSimulado {
-
+    //cria uma url para imagem
     public Set<String> enviar(List<MultipartFile> imagens){
         return imagens.stream()
                 .map(imagem -> "http://imagem.produto/"
