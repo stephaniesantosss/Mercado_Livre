@@ -27,7 +27,7 @@ public class Produto {
     private Integer qtde;
     @Size(min = 3)
     @OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
-    private Set<Caracteristica> caracteristicas = new HashSet<>();
+    private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
     @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
     private Set<Imagem> imagens = new HashSet<>();
     @NotBlank
@@ -82,7 +82,7 @@ public class Produto {
         return qtde;
     }
 
-    public Set<Caracteristica> getCaracteristicas() {
+    public Set<CaracteristicaProduto> getCaracteristicas() {
         return caracteristicas;
     }
 

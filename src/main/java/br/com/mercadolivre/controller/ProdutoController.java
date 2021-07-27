@@ -22,7 +22,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/produto")
-public class ProdutorController {
+public class ProdutoController {
 
     @PersistenceContext
     private EntityManager entityManager;
