@@ -1,6 +1,6 @@
 package br.com.mercadolivre.request;
 
-import br.com.mercadolivre.model.CaracteristicaProduto;
+import br.com.mercadolivre.model.Caracteristica;
 import br.com.mercadolivre.model.Produto;
 
 import javax.validation.constraints.NotBlank;
@@ -28,7 +28,7 @@ public class CaracteristicaRequest {
         return descricao;
     }
 
-    public CaracteristicaProduto toConverter(Produto produto) {
-        return new CaracteristicaProduto(nome, descricao, produto);
+    public Caracteristica toConverter(Produto produto) {
+        return new Caracteristica(nome, descricao, produto);
     }
 }

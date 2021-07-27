@@ -27,7 +27,7 @@ public class Produto {
     private Integer qtde;
     @Size(min = 3)
     @OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
-    private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
+    private Set<Caracteristica> caracteristicas = new HashSet<>();
     @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
     private Set<Imagem> imagens = new HashSet<>();
     @NotBlank
@@ -40,6 +40,8 @@ public class Produto {
     @NotNull
     private Usuario usuarioId;
     private LocalDateTime instanteCadastro;
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private Set<Opiniao> opiniao = new HashSet<>();
 
     @Deprecated
     public Produto() {
@@ -66,6 +68,12 @@ public class Produto {
         this.imagens.addAll(imagens);
     }
 
+    public <T> Set<T> mapOpinioes(
+            Function<Opiniao, T> funcaoMap) {
+        return this.opiniao.stream().map(funcaoMap)
+                .collect(Collectors.toSet());
+    }
+
     public Long getId() {
         return id;
     }
@@ -82,7 +90,7 @@ public class Produto {
         return qtde;
     }
 
-    public Set<CaracteristicaProduto> getCaracteristicas() {
+    public Set<Caracteristica> getCaracteristicas() {
         return caracteristicas;
     }
 

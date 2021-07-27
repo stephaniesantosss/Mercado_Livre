@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class CaracteristicaProduto {
+public class Caracteristica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +20,10 @@ public class CaracteristicaProduto {
     private Produto produto;
 
     @Deprecated
-    public CaracteristicaProduto() {
+    public Caracteristica() {
     }
 
-    public CaracteristicaProduto(String nome, String descricao, Produto produto) {
+    public Caracteristica(String nome, String descricao, Produto produto) {
         this.nome = nome;
         this.descricao = descricao;
         this.produto = produto;
