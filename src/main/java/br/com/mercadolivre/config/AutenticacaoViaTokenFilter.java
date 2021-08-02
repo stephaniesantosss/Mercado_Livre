@@ -33,6 +33,7 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
+
     }
 
     private void autenticarCliente(String token) {
