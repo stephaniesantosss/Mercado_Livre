@@ -35,6 +35,6 @@ public class PerguntaController {
 
         System.out.println(perguntaRequest);
 
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
