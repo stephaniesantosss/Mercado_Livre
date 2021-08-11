@@ -37,7 +37,7 @@ public class OpiniaoController {
     @PostMapping("/produto/{id}/opiniao")
     public ResponseEntity salvarOpiniao(@RequestBody @Valid OpiniaoRequest request, @PathVariable Long id) {
         Produto produto = entityManager.find(Produto.class, id);
-        Usuario usuario = usuarioRepository.findByLogin("Eloisa@hotmail.com").get();
+        Usuario usuario = usuarioRepository.findByLogin("stephanieps2016@hotmail.com").get();
         if (produto != null) {
             Opiniao opiniao = request.converter(usuario, produto);
             opiniaoRepository.save(opiniao);

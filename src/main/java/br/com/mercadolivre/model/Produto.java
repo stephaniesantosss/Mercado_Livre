@@ -5,9 +5,7 @@ import br.com.mercadolivre.request.CaracteristicaRequest;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -40,6 +38,9 @@ public class Produto {
     @NotNull
     private Usuario usuarioId;
     private LocalDateTime instanteCadastro;
+    @OneToMany(mappedBy = "produto")
+    @OrderBy("titulo asc")
+    private SortedSet<Pergunta> perguntas = new TreeSet<>();
     @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
     private Set<Opiniao> opiniao = new HashSet<>();
 
@@ -48,7 +49,7 @@ public class Produto {
     }
 
     public Produto(String nome, Double valor, Integer qtde, Collection<CaracteristicaRequest> caracteristicas,
-                   String descricao, Categoria categoria, Usuario usuarioId, LocalDateTime instanteCadastro) {
+                   String descricao, Categoria categoria, Usuario usuarioId) {
         this.nome = nome;
         this.valor = valor;
         this.qtde = qtde;
@@ -92,6 +93,18 @@ public class Produto {
 
     public Set<Caracteristica> getCaracteristicas() {
         return caracteristicas;
+    }
+
+    public <T> Set<T> mapCaracteristicas(
+            Function<Caracteristica, T> funcaoMap) {
+        return this.caracteristicas.stream().map(funcaoMap)
+                .collect(Collectors.toSet());
+    }
+
+    public <T extends Comparable<T>> SortedSet<T> mapPerguntas(
+            Function<Pergunta, T> funcaoMap) {
+        return this.perguntas.stream().map(funcaoMap)
+                .collect(Collectors.toCollection(TreeSet::new));
     }
 
     public <T> Set<T> mapImagens(

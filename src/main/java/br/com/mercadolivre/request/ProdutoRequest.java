@@ -29,13 +29,12 @@ public class ProdutoRequest {
     private Long categoriaId;
     @NotNull
     private Long usuarioId;
-    private LocalDateTime instanteCadastro;
 
     public ProdutoRequest() {
     }
 
     public ProdutoRequest(String nome, Double valor, Integer qtde, List<CaracteristicaRequest> caracteristicas,
-                          String descricao, Long categoriaId, Long usuarioId, LocalDateTime instanteCadastro) {
+                          String descricao, Long categoriaId, Long usuarioId) {
         this.nome = nome;
         this.valor = valor;
         this.qtde = qtde;
@@ -43,7 +42,6 @@ public class ProdutoRequest {
         this.descricao = descricao;
         this.categoriaId = categoriaId;
         this.usuarioId = usuarioId;
-        this.instanteCadastro = LocalDateTime.now();
     }
 
     public String getNome() {
@@ -74,13 +72,9 @@ public class ProdutoRequest {
         return usuarioId;
     }
 
-    public LocalDateTime getInstanteCadastro() {
-        return instanteCadastro;
-    }
-
     public Produto toModel(CategoriaRepository categoriaRepository, UsuarioRepository usuarioRepository) {
         Categoria categoria = categoriaRepository.getById(categoriaId);
         Usuario usuario = usuarioRepository.getById(usuarioId);
-        return new Produto(nome, valor, qtde, caracteristicas, descricao, categoria, usuario, instanteCadastro);
+        return new Produto(nome, valor, qtde, caracteristicas, descricao, categoria, usuario);
     }
 }

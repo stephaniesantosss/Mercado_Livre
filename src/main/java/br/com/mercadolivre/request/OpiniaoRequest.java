@@ -16,9 +16,9 @@ public class OpiniaoRequest {
     @NotBlank @Size(max = 500)
     private String descricao;
 
-    public OpiniaoRequest(Integer nota, String titulo, String descricao) {
+    public OpiniaoRequest(Integer nota, String pergunta, String descricao) {
         this.nota = nota;
-        this.titulo = titulo;
+        this.titulo = pergunta;
         this.descricao = descricao;
     }
 

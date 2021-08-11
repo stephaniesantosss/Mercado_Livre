@@ -57,4 +57,42 @@ public class Opiniao {
     public Produto getProduto() {
         return produto;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Opiniao that = (Opiniao) o;
+
+        if (nota != that.nota) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (titulo != null ? !titulo.equals(that.titulo) : that.titulo != null) return false;
+        if (descricao != null ? !descricao.equals(that.descricao) : that.descricao != null) return false;
+        if (produto != null ? !produto.equals(that.produto) : that.produto != null) return false;
+        return usuario != null ? usuario.equals(that.usuario) : that.usuario == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + nota;
+        result = 31 * result + (titulo != null ? titulo.hashCode() : 0);
+        result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
+        result = 31 * result + (produto != null ? produto.hashCode() : 0);
+        result = 31 * result + (usuario != null ? usuario.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "OpiniaoProduto{" +
+                "id=" + id +
+                ", nota=" + nota +
+                ", titulo='" + titulo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", produto=" + produto +
+                ", cliente=" + usuario +
+                '}';
+    }
 }
